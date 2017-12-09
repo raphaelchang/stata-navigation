@@ -10,7 +10,7 @@ bowExtract.setVocabulary(dictionary)
 bowTrain = np.empty((0, dictionary.shape[0]))
 
 for i in range(1, NUM_TRAIN + 1):
-    train = cv2.imread('train' + str(i) + '.jpg')
+    train = cv2.imread('train/' + str(i) + '.jpg')
     train = cv2.resize(train, (0, 0), None, 0.1, 0.1)
     kp, des = sift.detectAndCompute(train, None)
     bowDescriptor = bowExtract.compute(train, kp)

@@ -26,7 +26,7 @@ topSim = np.argsort(similarities, axis=0)[::-1]
 best_inlier = 0
 best_train = 0
 for i in range(0, min(TOP_CHECKS, train.shape[0])):
-    trainImg = cv2.imread('train' + str(topSim[i][0] + 1) + '.jpg')
+    trainImg = cv2.imread('train/' + str(topSim[i][0] + 1) + '.jpg')
     trainImg = cv2.resize(trainImg, (0, 0), None, 0.1, 0.1)
     qpts, tpts = sm.FindMatches(query, trainImg)
     H, inlierMask = cv2.findHomography(qpts, tpts, cv2.RANSAC, 10.0)
