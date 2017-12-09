@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    var loading = false;
     $("#spinner").hide();
     $("#image-upload").on('change', function () {
         var image_holder = $("#image-holder");
@@ -18,6 +19,10 @@ $(document).ready(function() {
     $("#form").submit(function(e) {
         e.preventDefault()
         $("#spinner").show();
+        $("#image-holder").animate({opacity: 0.7}, 100);
+        $(".option-button").css({backgroundColor: "#aaa", cursor: "default"}, 100);
+        $("#ok2").removeAttr("style");
+        loading = true;
         $.ajax({
             type: "POST",
             url: "/upload",
@@ -26,6 +31,7 @@ $(document).ready(function() {
             data: new FormData($(this)[0]),
             success: function(data)
             {
+                loading = false;
                 var image_holder = $("#image-holder2");
                 image_holder.empty();
                 $("<img />", {
@@ -34,8 +40,11 @@ $(document).ready(function() {
                 }).appendTo(image_holder);
                 image_holder.show();
                 $("#slide-container2").show();
+                $("#close").click();
                 $("#slide-container2").animate({top: 0}, 500, function() {
                     $("#spinner").hide();
+                    $("#image-holder").animate({opacity: 1.0}, 0);
+                    $(".option-button").removeAttr("style");
                 });
                 $('#image-upload').val('');
             }
@@ -45,9 +54,13 @@ $(document).ready(function() {
         $('#image-upload').click();
     });
     $('#ok').click(function(){
+        if (loading)
+            return;
         $('#submit').click();
     });
     $("#close").click(function() {
+        if (loading)
+            return;
         $("#slide-container").animate({top: "100%"}, 500, function() {
             $("#image-holder").empty();
             $("#slide-container").hide();
@@ -58,6 +71,5 @@ $(document).ready(function() {
             $("#image-holder2").empty();
             $("#slide-container2").hide();
         });
-        $("#close").click();
     });
 });
