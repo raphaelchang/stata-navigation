@@ -3,7 +3,7 @@ import cv2
 from matplotlib import pyplot as plt
 
 NUM_TRAIN = 4
-dictionary = np.load("bow_dictionary.npy")
+dictionary = np.load("train/bow_dictionary.npy")
 sift = cv2.xfeatures2d.SIFT_create()
 bowExtract = cv2.BOWImgDescriptorExtractor(sift, cv2.BFMatcher(cv2.NORM_L2))
 bowExtract.setVocabulary(dictionary)
@@ -17,4 +17,4 @@ for i in range(1, NUM_TRAIN + 1):
     bowTrain = np.append(bowTrain, bowDescriptor, axis=0)
 
 print bowTrain
-np.save("bow_train.npy", bowTrain)
+np.save("train/bow_train.npy", bowTrain)

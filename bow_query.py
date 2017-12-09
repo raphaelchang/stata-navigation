@@ -5,8 +5,8 @@ from matplotlib import pyplot as plt
 import surf_match as sm
 
 TOP_CHECKS = 2
-dictionary = np.load("bow_dictionary.npy")
-train = np.load("bow_train.npy")
+dictionary = np.load("train/bow_dictionary.npy")
+train = np.load("train/bow_train.npy")
 sift = cv2.xfeatures2d.SIFT_create()
 bowExtract = cv2.BOWImgDescriptorExtractor(sift, cv2.BFMatcher(cv2.NORM_L2))
 bowExtract.setVocabulary(dictionary)

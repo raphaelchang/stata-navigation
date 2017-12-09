@@ -15,4 +15,4 @@ for i in range(1, NUM_TRAIN + 1):
 
 dictionary = BOW.cluster()
 print dictionary
-np.save("bow_dictionary.npy", dictionary)
+np.save("train/bow_dictionary.npy", dictionary)
