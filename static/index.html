@@ -1,5 +1,29 @@
 <html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="script.js"></script>
+        <script src="https://use.fontawesome.com/75f6e53f54.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
     <body>
-         <input type="file" accept="image/*" capture="camera">
+         <div id="image-upload-button"><i class="fa fa-camera" aria-hidden="true"></i></div><br />
+         <form id="form" action="javascript:;" method="POST" enctype="multipart/form-data">
+             <input id="image-upload" type="file" name="image" accept="image/*" capture="camera">
+             <input id="submit" type="submit">
+         </form>
+         <div id="slide-container">
+             <div id="options">
+             <div class="option-button" id="close"><i class="fa fa-times" aria-hidden="true"></i></div>
+             <div class="option-button" id="ok"><i class="fa fa-check" aria-hidden="true"></i></div>
+             </div>
+             <div id="spinner-cont">
+                 <i id="spinner" class="fa fa-spinner" aria-hidden="true"></i>
+             </div>
+             <div id="image-holder"></div>
+         </div>
+         <div id="slide-container2">
+             <div class="option-button" id="ok2"><i class="fa fa-check" aria-hidden="true"></i></div>
+             <div id="image-holder2"></div>
+         </div>
     </body>
 </html>
