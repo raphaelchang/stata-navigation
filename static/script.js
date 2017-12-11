@@ -35,9 +35,17 @@ $(document).ready(function() {
                 var image_holder = $("#image-holder2");
                 image_holder.empty();
                 $("<img />", {
-                    "src": '/train/' + data,
+                    "id": "map",
+                    "src": '/maps/' + data.floor + '.png',
                     "width": $(window).width()
                 }).appendTo(image_holder);
+                $("#map").on('load', function() {
+                    $("#marker").css({'-webkit-transform': 'rotate(' + (315 - 180 * data.orientation) + 'deg)',
+                        '-moz-transform': 'rotate(' + (315 - 180 * data.orientation) + 'deg)',
+                        'transform': 'rotate(' + (315 - 180 * data.orientation) + 'deg)',
+                        'left': (-1002 + data.x * 2.7) / 1384.0 * $(this).width() + 'px',
+                        'top': (-36 + data.y * 2.22) / 1156.0 * $(this).height() + 'px'});
+                });
                 image_holder.show();
                 $("#slide-container2").show();
                 $("#close").click();

@@ -14,13 +14,13 @@ def upload_image():
     file = request.files['image']
     name = str(uuid.uuid4().hex) + '.' + file.filename.split('.')[-1]
     file.save(name)
-    res = str(bq.Query(name)) + '.jpg'
+    floor, x, y, rot = bq.Query(name)
     os.remove(name)
-    return res
+    return jsonify(floor=floor, x=x, y=y, orientation=rot)
 
-@app.route('/train/<path:path>')
+@app.route('/maps/<path:path>')
 def send_image(path):
-    return send_from_directory(os.path.dirname(os.path.abspath(__file__)) + '/train/', path);
+    return send_from_directory(os.path.dirname(os.path.abspath(__file__)) + '/maps/', path);
 
 @app.route('/<path:path>')
 def send_static(path):

@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 from matplotlib import pyplot as plt
 
-NUM_TRAIN = 4
+NUM_TRAIN = 26
 dictionary = np.load("train/bow_dictionary.npy")
 sift = cv2.xfeatures2d.SIFT_create()
 bowExtract = cv2.BOWImgDescriptorExtractor(sift, cv2.BFMatcher(cv2.NORM_L2))

@@ -2,8 +2,8 @@ import numpy as np
 import cv2
 from matplotlib import pyplot as plt
 
-NUM_TRAIN = 4
-DICTIONARY_SIZE = 100
+NUM_TRAIN = 26
+DICTIONARY_SIZE = 1000
 sift = cv2.xfeatures2d.SIFT_create()
 BOW = cv2.BOWKMeansTrainer(DICTIONARY_SIZE)
 

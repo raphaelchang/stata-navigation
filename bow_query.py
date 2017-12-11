@@ -4,11 +4,12 @@ import cv2
 from matplotlib import pyplot as plt
 import surf_match as sm
 
-TOP_CHECKS = 2
+TOP_CHECKS = 5
 
 def Query(queryFile):
     dictionary = np.load("train/bow_dictionary.npy")
     train = np.load("train/bow_train.npy")
+    locs = np.load("maps/map_tags.npy")
     sift = cv2.xfeatures2d.SIFT_create()
     bowExtract = cv2.BOWImgDescriptorExtractor(sift, cv2.BFMatcher(cv2.NORM_L2))
     bowExtract.setVocabulary(dictionary)
@@ -35,12 +36,13 @@ def Query(queryFile):
         numInliers = inlierMask.ravel().tolist().count(1)
         if numInliers > best_inlier:
             best_inlier = numInliers
-            best_train = topSim[i][0] + 1
+            best_train = topSim[i][0]
         # imwarp = cv2.warpPerspective(query, H, (trainImg.shape[1], trainImg.shape[0]))
         # cv2.imshow("Transformed", imwarp)
         # cv2.imshow("Original", trainImg)
         # cv2.waitKey(0)
-    return best_train
+    loc = locs[int(best_train / 2)]
+    return (loc[0], loc[1], loc[2], best_train % 2)
 
 
 if __name__ == '__main__':
